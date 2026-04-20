@@ -1,0 +1,1 @@
+export { translateError } from "./src/translator.js";

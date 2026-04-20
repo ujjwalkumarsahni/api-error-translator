@@ -1,0 +1,25 @@
+{
+  "name": "api-error-translator",
+  "version": "1.0.0",
+  "description": "Translate backend errors into clean structured messages",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ujjwalkumarsahni/api-error-translator.git"
+  },
+  "keywords": [
+    "[\"error\"",
+    "\"api\"",
+    "\"translator\"]"
+  ],
+  "author": "Ujjwal Kumar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ujjwalkumarsahni/api-error-translator/issues"
+  },
+  "homepage": "https://github.com/ujjwalkumarsahni/api-error-translator#readme"
+}
