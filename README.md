@@ -1,33 +1,56 @@
-# 🚀 api-error-translator
+# api-error-translator
 
-Convert messy backend errors into clean, human-readable, structured responses.
+Convert messy backend errors into clean, human-readable, and frontend-friendly responses.
 
 ---
 
-## 📌 Why this package?
+## The Problem
 
-Backend errors (especially from databases and validators) are often:
+Backend errors (especially from databases and validation libraries) are:
 
-* hard to read
 * inconsistent
+* hard to read
 * difficult to handle on frontend
 
-This package solves that by converting errors into a **standard, predictable format**.
+Example:
+
+```json
+{
+  "error": "ValidationError: Path `email` is required"
+}
+```
+
+Frontend dev को खुद parsing करनी पड़ती है — messy and repetitive.
 
 ---
 
-## ✨ Features
+## The Solution
 
-* ✅ Human-readable error messages
-* ✅ Consistent response structure
-* ✅ Supports Mongoose validation & duplicate errors
-* ✅ Supports Zod validation
-* ✅ Safe fallback for unknown errors
-* ✅ Lightweight & zero dependencies
+`api-error-translator` converts raw errors into a **clean, predictable format**:
+
+```json
+{
+  "message": "Email is required",
+  "field": "email",
+  "type": "validation"
+}
+```
 
 ---
 
-## 📦 Installation
+## Features
+
+* 🔹 Human-readable error messages
+* 🔹 Consistent response structure
+* 🔹 Mongoose validation & duplicate error support
+* 🔹 Zod validation support
+* 🔹 Safe fallback for unknown errors
+* 🔹 Customizable messages
+* 🔹 Lightweight & zero dependencies
+
+---
+
+## Installation
 
 ```bash
 npm install api-error-translator
@@ -35,7 +58,7 @@ npm install api-error-translator
 
 ---
 
-## ⚡ Usage
+## Quick Start
 
 ```js
 import { translateError } from "api-error-translator";
@@ -50,21 +73,21 @@ try {
 
 ---
 
-## 🧠 Output Format
+## Output Format
 
 ```json
 {
-  "message": "Email is required",
-  "field": "email",
-  "type": "validation"
+  "message": "Error message",
+  "field": "optional field name",
+  "type": "validation | duplicate | generic | unknown"
 }
 ```
 
 ---
 
-## 🔥 Real Examples
+## Real Examples
 
-### 1. Validation Error (Mongoose)
+### 1. Mongoose Validation Error
 
 ```js
 translateError({
@@ -73,16 +96,6 @@ translateError({
     email: { message: "Email is required" }
   }
 });
-```
-
-Output:
-
-```json
-{
-  "message": "Email is required",
-  "field": "email",
-  "type": "validation"
-}
 ```
 
 ---
@@ -94,16 +107,6 @@ translateError({
   code: 11000,
   keyValue: { email: "test@mail.com" }
 });
-```
-
-Output:
-
-```json
-{
-  "message": "email already exists",
-  "field": "email",
-  "type": "duplicate"
-}
 ```
 
 ---
@@ -119,16 +122,6 @@ translateError({
 });
 ```
 
-Output:
-
-```json
-{
-  "message": "Invalid email",
-  "field": "email",
-  "type": "validation"
-}
-```
-
 ---
 
 ### 4. Generic Error
@@ -137,18 +130,9 @@ Output:
 translateError(new Error("Something went wrong"));
 ```
 
-Output:
-
-```json
-{
-  "message": "Something went wrong",
-  "type": "generic"
-}
-```
-
 ---
 
-## 🧩 Express Integration Example
+## Express Integration
 
 Works perfectly with Express global error handling:
 
@@ -166,16 +150,7 @@ app.use((err, req, res, next) => {
 
 ---
 
-## 🎯 Use Cases
-
-* Backend API error standardization
-* Frontend form error handling
-* Clean logging & debugging
-* Reducing repetitive error handling code
-
----
-
-## ⚙️ Custom Messages (Optional)
+## Custom Messages
 
 ```js
 translateError(error, {
@@ -186,37 +161,37 @@ translateError(error, {
 
 ---
 
-## 🛠️ Tech Support
+## Use Cases
 
-* Node.js
-* Express
-* MongoDB / Mongoose
-* Zod
+* Backend API error standardization
+* Frontend form error handling
+* Clean logging & debugging
+* Reducing repetitive error-handling code
 
 ---
 
-## 📈 Roadmap
+## Roadmap
 
 * [ ] Multiple error support
-* [ ] TypeScript types
+* [ ] TypeScript support
 * [ ] Plugin system
 * [ ] i18n (multi-language support)
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Pull requests are welcome!
 For major changes, please open an issue first.
 
 ---
 
-## 📄 License
+## License
 
 MIT © Ujjwal Kumar
 
 ---
 
-## ⭐ Support
+## Support
 
-If you find this useful, consider giving it a star ⭐ on GitHub.
+If you find this useful, give it a star ⭐ on GitHub.
